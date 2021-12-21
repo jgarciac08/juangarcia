@@ -1,8 +1,10 @@
 import React from 'react';
 
-import { Lista } from './components/Lista';
+import Etiqueta from './components/Etiqueta';
+import Lista from './components/Lista';
+import ListaClase from './components/ListaClase';
 
-export function App() {
+export default function App() {
   const elementos1 = [
     { done: false, texto: 'Hacer la compra', prioridad: 'alta' },
     { done: true, texto: 'Sacar al perro', prioridad: 'media' },
