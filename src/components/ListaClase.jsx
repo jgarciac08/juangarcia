@@ -3,9 +3,7 @@ import ComponenteListaClase from './ComponenteListaClase';
 import Lista from './Lista';
 
 class ListaClase extends React.Component {
-  /*Constructor, declara una lista que recorre y rellena con las 
-  propiedades pasadas. Establece esta lista como estado y crea las
-  variables para el inputText y el dropDown*/
+  
   constructor(props) {
     super(props);
     this.listaInicial = [];
@@ -30,9 +28,7 @@ class ListaClase extends React.Component {
     this.selectPrioridad;
   }
 
-  /*Método que será llamado cuando se pulse el botón. Añade a la 
-  lista el componente creado a partir del inputText y el dropDown
-  y llama al método changeState para establecer un nuevo estado.*/
+  
   funcion() {
     this.listaInicial = 
     this.listaInicial.concat(
@@ -45,14 +41,12 @@ class ListaClase extends React.Component {
     this.changeState();
   }
 
-  /*Establece un nuevo estado*/
+  
   changeState() {
     this.setState({listaActual: this.listaInicial})
   }
 
-  /*Método llamado cada vez que el estado cambie después de la primera
-  vez, será la parte más cercana al html con partes de React para el
-  manejo de la página*/
+  
   render() {
     return (
       <div>
