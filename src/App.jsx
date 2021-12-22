@@ -1,8 +1,6 @@
 import React from 'react';
 
-import Etiqueta from './components/Etiqueta';
-import Lista from './components/Lista';
-import ListaClase from './components/ListaClase';
+import { Lista } from './components/Lista';
 
 export default function App() {
   const elementos1 = [

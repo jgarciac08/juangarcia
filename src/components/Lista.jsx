@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 
-import ComponenteListaClase from './ComponenteListaClase';
 import ComponenteLista from './ComponenteLista';
 
 export default function Lista(props) {
@@ -8,7 +7,7 @@ export default function Lista(props) {
   if (props.elementos !== undefined) {
     for (let i = 0; i < props.elementos.length; i++) {
       listaInicial.push(
-        <ComponenteListaClase
+        <ComponenteLista
           done={props.elementos[i].done}
           texto={props.elementos[i].texto}
           prioridad={props.elementos[i].prioridad}
@@ -23,7 +22,10 @@ export default function Lista(props) {
 
   const funcion = function addElement() {
     const newLista = listaComponentes.concat(
-      <ComponenteListaClase done ={false} texto={valorTextInput.current.value} />
+      <ComponenteLista
+        texto={valorTextInput.current.value}
+        prioridad={valorPrioritySelect.current.value}
+      />
     );
     setListaComponentes(newLista);
   };
@@ -34,10 +36,11 @@ export default function Lista(props) {
       <ul>
         {listaComponentes}
         <li>
-          <input 
-          ref={valorTextInput}
-          type="text" 
-          placeholder="Introduce una tarea"/>
+          <input
+            ref={valorTextInput}
+            type="text"
+            placeholder="Introduce una tarea"
+          />
           <br />
           <select ref={valorPrioritySelect}>
             <option value="alta">Prioridad Alta</option>
@@ -48,5 +51,5 @@ export default function Lista(props) {
         </li>
       </ul>
     </div>
-  );  
+  );
 }
