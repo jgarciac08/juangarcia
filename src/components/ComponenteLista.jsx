@@ -3,11 +3,6 @@ import React, { useState } from 'react';
 import './componente-lista.css';
 
 export default function ComponenteLista(props) {
-  let claseLista = '';
-
-  const [done, setDone] = useState(props.done);
-
-  setElementClass();
   function setElementClass() {
     claseLista = props.prioridad;
     if (done) {
@@ -21,9 +16,12 @@ export default function ComponenteLista(props) {
     setDone(!done);
   }
 
+  let claseLista = '';
+  const [done, setDone] = useState(props.done);
+  setElementClass();
   return (
     <li className={claseLista}>
-      <input type="checkbox" defaultChecked={done} onChange={setTaskStatus} />
+      <input type="checkbox" defaultChecked={done} onChange={changeStatus} />
       {props.texto}
     </li>
   );
