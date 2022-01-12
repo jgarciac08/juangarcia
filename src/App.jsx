@@ -22,7 +22,10 @@ export function App() {
   return (
     <Router>
       <Header />
-      {createRoutes()}
+      {/*createRoutes()*/}
+      {MenuItems.map(function createRoute(item){
+        <Route path={item.path} exact component={item.component}/>
+      })}
       {/* <Route path="/" exact component={Home} />
           <Route path="/listas" component={PaginaListas} />
           <Route path="/perfil" component={Perfil} />*/}
