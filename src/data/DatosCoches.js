@@ -1,5 +1,5 @@
 export const TitulosCoches = {
-  id: 'Matrícula',
+  id: 'Matricula',
   field1: 'Marca',
   field2: 'Modelo',
   field3: 'Color',
