@@ -10,29 +10,24 @@ class BootstrapTabla extends React.Component {
     return (<Table responsive>
     <thead>
       <tr>
-        <th>#</th>
-        {Array.from({ length: 12 }).map((_, index) => (
-          <th key={index}>Table heading</th>
-        ))}
+        <th>Cochazos</th>
+        <td></td>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
-        {Array.from({ length: 12 }).map((_, index) => (
-          <td key={index}>Table cell {index}</td>
-        ))}
+        <td>1</td>        
       </tr>
       <tr>
         <td>2</td>
-        {Array.from({ length: 12 }).map((_, index) => (
-          <td key={index}>Table cell {index}</td>
+        {Array.from({ length: 4 }).map((_, index) => (
+          <td key={index}>{index}</td>
         ))}
       </tr>
       <tr>
         <td>3</td>
-        {Array.from({ length: 12 }).map((_, index) => (
-          <td key={index}>Table cell {index}</td>
+        {Array.from({ length: 4 }).map((_, index) => (
+          <td key={index}>{index}</td>
         ))}
       </tr>
     </tbody>
