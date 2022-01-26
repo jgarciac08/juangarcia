@@ -1,33 +1,52 @@
 import React from 'react';
 import { Card, Container, Table, Row, Col } from 'react-bootstrap';
-import { TitulosCoches, DatosCoches } from '../data/DatosCoches';
-class Coches extends React.Component {
+import { TitulosMotos, DatosMotos } from '../data/DatosMotos';
+class Motos extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      matricula: '',
+      marca: '',
+      modelo: '',
+      color: '',
+      abs: '',
+      descripcion: '',
+      imagen: '',
+    }
   }
 
-  
+  eventclick(item) {
+    this.setState({
+      imagen: item.imagen,
+      matricula: item.matricula,
+      marca: item.marca,
+      modelo: item.modelo,
+      color: item.color,
+      abs: item.abs,
+      descripcion: item.descripcion,
+    });
+  }
 
   render() {
     return (
       <div className="main-site">
-        <h1>Coches</h1>
+        <h1>Motos</h1>
         <Container>
           <Row>
             <Col lg={8} md={6}>
               <Table responsive striped>
                 <thead>
                   <tr>
-                    <th>{TitulosCoches.id}</th>
-                    <th>{TitulosCoches.field1}</th>
-                    <th>{TitulosCoches.field2}</th>
-                    <th>{TitulosCoches.field3}</th>
+                    <th>{TitulosMotos.id}</th>
+                    <th>{TitulosMotos.field1}</th>
+                    <th>{TitulosMotos.field2}</th>
+                    <th>{TitulosMotos.field3}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {DatosCoches.map((item) => {
+                  {DatosMotos.map((item) => {
                     return (
-                      <tr>
+                      <tr onClick={() => this.eventclick(item)}>
                         <td>{item.matricula}</td>
                         <td>{item.marca}</td>
                         <td>{item.modelo}</td>
@@ -40,15 +59,15 @@ class Coches extends React.Component {
             </Col>
             <Col lg={4} md={6}>
               <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={DatosCoches[0].imagen} />
+                <Card.Img variant="top" src={this.state.imagen} />
                 <Card.Body>
                   <Card.Title>
-                    {DatosCoches[0].marca} {DatosCoches[0].modelo}
+                    {this.state.marca} {this.state.modelo}
                   </Card.Title>
                   <Card.Text>
-                    Matrícula: {DatosCoches[0].matricula}
+                    Matrícula: {this.state.matricula}
                     <p />
-                    {DatosCoches[0].descripcion}
+                    {this.state.descripcion}
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -60,4 +79,4 @@ class Coches extends React.Component {
   }
 }
 
-export default Coches;
+export default Motos;
