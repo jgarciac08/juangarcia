@@ -12,22 +12,21 @@ class Perfil extends React.Component {
     this.logout = this.logout.bind(this);
   }
 
-
-
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('password');
-    {MenuItems.map(id='1')}
-    <Link to={item.id} className="logout-link"></Link>
+    location.reload;
   }
 
   render() {
     return (
       <div className="main-site">
         <h1>Página de perfil</h1>
-        <Button variant="primary" type="button" onClick={this.logout}>
-          Cerrar sesión          
-        </Button>        
+        <Link to="/">
+          <Button type="button" onClick={this.logout}>
+            Cerrar sesión
+          </Button>
+        </Link>
       </div>
     );
   }
