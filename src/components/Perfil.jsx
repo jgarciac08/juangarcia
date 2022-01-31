@@ -1,34 +1,60 @@
 import React from 'react';
-import BootstrapTabla from './BootstrapTabla';
-import { Container, Form, Button } from 'react-bootstrap';
+
+import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { TitulosAlumnos, DatosAlumnos } from '../data/DatosAlumnos';
-import { MenuItems } from '../data/MenuItems';
+import { DatosAlumnos } from '../data/DatosAlumnos';
 
 class Perfil extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { user: '', password: '' };
-    this.logout = this.logout.bind(this);
+
+    this.state = {
+      imagen: '',
+      nombre: '',
+      email: '',
+      apellido1: '',
+    };
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem('id') !== null) {
+      this.setState({
+        imagen: DatosAlumnos[localStorage.getItem('id')].imagen,
+        nombre: DatosAlumnos[localStorage.getItem('id')].nombre,
+        email: DatosAlumnos[localStorage.getItem('id')].email,
+        apellido1: DatosAlumnos[localStorage.getItem('id')].apellido1,
+      });
+    }
   }
 
   logout() {
-    localStorage.removeItem('user');
-    localStorage.removeItem('password');
-    location.reload;
+    localStorage.removeItem('id');
   }
 
   render() {
-    return (
-      <div className="main-site">
-        <h1>Página de perfil</h1>
-        <Link to="/">
-          <Button type="button" onClick={this.logout}>
-            Cerrar sesión
-          </Button>
-        </Link>
-      </div>
-    );
+    if (localStorage.getItem('id') !== null) {
+      return (
+        <Card style={{ width: '18rem' }}>
+          <Card.Img variant="top" src={this.state.imagen} />
+          <Card.Body>
+            <Card.Title>
+              <h1>{this.state.nombre}</h1>
+            </Card.Title>
+            <Card.Text>
+              <h3>Correo: {this.state.email}</h3>
+              <h3>Nombre: {this.state.nombre}</h3>
+              <h3>Apellido: {this.state.apellido1}</h3>
+            </Card.Text>
+            <Link to="/">
+              <Button type="button" onClick={this.logout}>
+                Cerrar sesión
+              </Button>
+            </Link>
+          </Card.Body>
+        </Card>
+      );
+    }
   }
 }
+
 export default Perfil;

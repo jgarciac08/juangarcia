@@ -1,38 +1,65 @@
 import React from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import { DatosAlumnos } from '../data/DatosAlumnos';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { user: '', password: '' };
+
+    this.state = { user: '', password: '', id: '1' };
+
     this.login = this.login.bind(this);
-    this.inputUser = React.createRef();
-    this.inputPassword = React.createRef();
+
+    this.nombre = React.createRef();
+    this.passwd = React.createRef();
+    this.check = React.createRef();
   }
 
   login() {
     this.setState({
-      user: this.inputUser.current.value,
-      password: this.inputPassword.current.value,
+      user: this.nombre.current.value,
+      password: this.passwd.current.value,
+    });
+  }
+
+  componentWillUnmount() {
+    {
+      {
+        DatosAlumnos.map((item) => {
+          if (
+            item.email === this.state.user &&
+            item.passwd === this.state.password
+          ) {
+            localStorage.setItem('id', item.id);
+          }
+        });
+      }
+    }
+  }
+
+  findId() {
+    DatosAlumnos.map((item) => {
+      if (item.email === this.state.user && item.passwd === this.state.password) {
+        this.setState({
+          id: item.id,
+        });
+      }
     });
   }
 
   componentDidMount() {
+    this.findId;
     this.setState({
-      user: localStorage.getItem('user'),
-      password: localStorage.getItem('password'),
+      id: localStorage.getItem('id'),
     });
   }
 
   render() {
-    if (
-      this.state !== null &&
-      this.state.user !== null &&
-      this.state.user !== ''
-    ) {
+    console.log(this.state.user);
+    if (this.state.id !== null) {
       return (
         <div className="main-site">
-          <h1>Bienvenido {this.state.user}!</h1>
+          <h1>Bienvenido {DatosAlumnos[this.state.id].nombre}</h1>
         </div>
       );
     } else {
@@ -42,24 +69,29 @@ class Home extends React.Component {
           <Container>
             <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Nombre de usuario o email: </Form.Label>
+                <Form.Label>Correo electronico</Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="Usuario"
-                  ref={this.inputUser}
+                  placeholder="Enter email"
+                  ref={this.nombre}
                 />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Contraseña: </Form.Label>
+                <Form.Label>Contraseña</Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Contraseña"
-                  ref={this.inputPassword}
+                  placeholder="Password"
+                  ref={this.passwd}
                 />
               </Form.Group>
+
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Recordarme" />
+                <Form.Check
+                  type="checkbox"
+                  label="Recordarme"
+                  ref={this.check}
+                />
               </Form.Group>
               <Button variant="primary" type="button" onClick={this.login}>
                 Login
@@ -69,11 +101,6 @@ class Home extends React.Component {
         </div>
       );
     }
-  }
-
-  componentWillUnmount() {
-    localStorage.setItem('user', this.state.user);
-    localStorage.setItem('password', this.state.password);
   }
 }
 
