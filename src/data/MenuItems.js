@@ -2,6 +2,7 @@ import Home from '../components/Home';
 import { PaginaListas } from '../components/PaginaListas';
 import Perfil from '../components/Perfil';
 import Motos from '../components/Motos';
+import CoinCap from '../components/CoinCap';
 
 export const MenuItems = [
   {
@@ -27,6 +28,12 @@ export const MenuItems = [
     path: '/motos',
     title: 'Motos',
     component: Motos,
+  },
+  {
+    id: 5,
+    path: '/coincap',
+    title: 'CoinCap',
+    component: CoinCap,
   },
 ];
 

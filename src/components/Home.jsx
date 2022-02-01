@@ -12,7 +12,6 @@ class Home extends React.Component {
 
     this.nombre = React.createRef();
     this.passwd = React.createRef();
-    this.check = React.createRef();
   }
 
   login() {
@@ -59,7 +58,7 @@ class Home extends React.Component {
     if (this.state.id !== null) {
       return (
         <div className="main-site">
-          <h1>Bienvenido {DatosAlumnos[this.state.id].nombre}</h1>
+          <h1>Bienvenido {DatosAlumnos[this.state.nombre]}</h1>
         </div>
       );
     } else {
@@ -72,7 +71,7 @@ class Home extends React.Component {
                 <Form.Label>Correo electronico</Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="Enter email"
+                  placeholder="Introduce email"
                   ref={this.nombre}
                 />
               </Form.Group>
@@ -81,16 +80,8 @@ class Home extends React.Component {
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Password"
+                  placeholder="Contraseña"
                   ref={this.passwd}
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check
-                  type="checkbox"
-                  label="Recordarme"
-                  ref={this.check}
                 />
               </Form.Group>
               <Button variant="primary" type="button" onClick={this.login}>
