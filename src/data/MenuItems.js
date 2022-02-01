@@ -2,7 +2,7 @@ import Home from '../components/Home';
 import { PaginaListas } from '../components/PaginaListas';
 import Perfil from '../components/Perfil';
 import Motos from '../components/Motos';
-import CoinCap from '../components/CoinCap';
+import Ergast from '../components/Ergast';
 
 export const MenuItems = [
   {
@@ -31,9 +31,9 @@ export const MenuItems = [
   },
   {
     id: 5,
-    path: '/coincap',
-    title: 'CoinCap',
-    component: CoinCap,
+    path: '/ergast',
+    title: 'Ergast',
+    component: Ergast,
   },
 ];
 
