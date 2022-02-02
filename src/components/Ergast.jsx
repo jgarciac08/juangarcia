@@ -88,9 +88,7 @@ class Ergast extends React.Component {
                       <p/>
                       País: {this.state.selectedLocation.country}
                       <p/>
-                      Ciudad: {this.state.selectedLocation.locality}
-                      <p/>
-                      Longitud: {this.state.selectedLocation.long}km                      
+                      Ciudad: {this.state.selectedLocation.locality}                                         
                     </Card.Text>
                   </Card.Body>
                 </Card>
