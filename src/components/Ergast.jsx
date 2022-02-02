@@ -3,6 +3,8 @@ import { Table } from 'react-bootstrap';
 import { Container, Row, Card } from 'react-bootstrap';
 import { forEach, map } from 'react-bootstrap/cjs/ElementChildren';
 import Col from 'react-bootstrap/esm/Col';
+import uuid from 'react-uuid';
+import { Link } from 'react-router-dom';
 
 class Ergast extends React.Component {
   constructor(props) {
@@ -10,19 +12,21 @@ class Ergast extends React.Component {
     this.state = {
       selectedItem: '',
       tableData: [],
-      selectedCircuit: ''
+      selectedCircuit: '',
+      selectedLocation: '',
     };
   }
 
   changeSelected = (item) => {
     this.setState({selectedItem: item, 
-      selectedCircuit: item.Circuit
+      selectedCircuit: item.Circuit,
+      selectedLocation: item.Circuit.Location
     });
   };
 
   async componentDidMount() {
     const response = await fetch(
-      'https://ergast/api/f1/2020.json'
+      'https://ergast.com/api/f1/2020.json'
     );
     const responseData = await response.json();
     const selectedData = responseData.MRData.RaceTable.Races;
@@ -30,6 +34,7 @@ class Ergast extends React.Component {
       tableData: selectedData,
       selectedItem: selectedData[0],
       selectedCircuit: selectedData[0].Circuit,
+      selectedLocation: selectedData[0].Circuit.Location,
     });    
   }
 
@@ -75,7 +80,17 @@ class Ergast extends React.Component {
                     <Card.Text>
                       Sesión: {this.state.selectedItem.round}
                       <p/>
-                      Circuito: {this.state.selectedItem.circuitName}
+                      Circuito: {this.state.selectedCircuit.circuitName}
+                      <p/>
+                      Fecha: {this.state.selectedItem.date}
+                      <p/>
+                      Hora: {this.state.selectedItem.time}
+                      <p/>
+                      País: {this.state.selectedLocation.country}
+                      <p/>
+                      Ciudad: {this.state.selectedLocation.locality}
+                      <p/>
+                      Longitud: {this.state.selectedLocation.long}km                      
                     </Card.Text>
                   </Card.Body>
                 </Card>
